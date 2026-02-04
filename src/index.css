@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --black: #0a0a0a;
+    --gold: #C9A86A;
+    --gold-light: #E5D4A1;
+    --gold-dark: #9A7B4A;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  
+  body {
+    @apply bg-black text-white antialiased;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    background-color: #0a0a0a;
+    min-height: 100vh;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer components {
+  .font-serif {
+    font-family: 'Cormorant Garamond', serif;
+  }
+  
+  .font-sans {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .text-gold {
+    color: var(--gold);
+  }
+  
+  .bg-black {
+    background-color: var(--black);
+  }
+  
+  .border-gold {
+    border-color: var(--gold);
+  }
+  
+  .section-pinned {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: #0a0a0a;
+  }
+  
+  .section-flowing {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: #0a0a0a;
+  }
+  
+  .collage-card {
+    border-radius: 16px;
+    overflow: hidden;
+    position: absolute;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    border: 1px solid rgba(201, 168, 106, 0.1);
+  }
+  
+  .micro-badge {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+  }
+  
+  .btn-primary {
+    @apply px-6 py-2.5 lg:px-8 lg:py-3 rounded-full border transition-all duration-300;
+    border-color: var(--gold);
+    color: var(--gold);
+    background-color: transparent;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--gold);
+    color: #0a0a0a;
+  }
+  
+  .thumbnail-chip {
+    @apply rounded-xl overflow-hidden cursor-pointer transition-all duration-300;
+    background-color: rgba(201, 168, 106, 0.05);
+    border: 1px solid rgba(201, 168, 106, 0.2);
+  }
+  
+  .thumbnail-chip:hover {
+    border-color: rgba(201, 168, 106, 0.4);
+    background-color: rgba(201, 168, 106, 0.1);
+  }
+  
+  .paper-grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.02;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+  
+  .vignette {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 0%, transparent 50%, rgba(0,0,0,0.3) 100%);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .will-change-transform {
+    will-change: transform;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-light);
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--gold);
+  color: #0a0a0a;
+}
+
+/* Mobile touch improvements */
+@media (hover: none) {
+  .btn-primary:hover {
+    background-color: transparent;
+    color: var(--gold);
+  }
+  
+  .btn-primary:active {
+    background-color: var(--gold);
+    color: #0a0a0a;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
