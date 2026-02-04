@@ -30,7 +30,7 @@ const Footer = () => {
               TheEventTimes
             </button>
             <p className="text-white/50 text-sm leading-relaxed max-w-sm mb-6">
-              Destination weddings & events in Sri Lanka, planned with heart. 
+              Destination weddings & events in Sri Lanka, planned with heart.
               We transform your love story into an unforgettable celebration.
             </p>
             <div className="flex gap-3">
@@ -65,12 +65,21 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-medium mb-4 text-sm">Contact</h4>
-            <ul className="space-y-2.5 text-sm text-white/50">
-              <li>hello@theeventtimes.studio</li>
-              <li>+94 77 123 4567</li>
-              <li>Colombo, Sri Lanka</li>
+            <h4 className="text-white font-medium mb-3 text-sm">Sri Lanka</h4>
+            <ul className="space-y-1 text-xs text-white/50 mb-4">
+              <li>217, World Trade Center</li>
+              <li>+94 70 712 3353</li>
             </ul>
+
+            <h4 className="text-white font-medium mb-3 text-sm">UAE</h4>
+            <ul className="space-y-1 text-xs text-white/50 mb-4">
+              <li>Amber Tower, Downtown, Dubai</li>
+              <li>+971 58 227 3323</li>
+            </ul>
+
+            <a href="mailto:info@theeventstime.com" className="text-gold hover:text-white transition-colors text-xs font-medium block mt-2">
+              info@theeventstime.com
+            </a>
           </div>
         </div>
 

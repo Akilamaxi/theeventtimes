@@ -42,10 +42,38 @@ const ContactSection = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/info@theeventstime.com", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          ...formData,
+          _subject: `New Inquiry: ${formData.name}`,
+        })
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          date: '',
+          location: '',
+          message: '',
+        });
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        alert("Something went wrong. Please email us directly at info@theeventstime.com");
+      }
+    } catch (error) {
+      alert("Network error. Please check your connection.");
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -53,7 +81,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section ref={sectionRef} id="contact" className="section-flowing bg-black py-20 lg:py-28 relative">
+    <section ref={sectionRef} id="contact" className="section-flowing bg-black py-20 lg:py-28 relative z-50">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/5 to-transparent pointer-events-none" />
 
       <div className="w-full px-6 lg:px-12 xl:px-20">
@@ -74,34 +102,52 @@ const ContactSection = () => {
             </p>
 
             {/* Contact Info */}
-            <div className="space-y-4 mb-8 contact-animate">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center border border-gold/30">
-                  <Mail size={18} className="text-gold" />
+            <div className="space-y-8 mb-10 contact-animate">
+              {/* Sri Lanka */}
+              <div className="group">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center border border-gold/20">
+                    <MapPin size={14} className="text-gold" />
+                  </div>
+                  <h3 className="text-white font-serif text-xl">Sri Lanka</h3>
                 </div>
-                <div>
-                  <p className="text-white/50 text-xs">Email us</p>
-                  <p className="text-white text-sm">hello@theeventtimes.studio</p>
+                <div className="pl-11 space-y-2">
+                  <p className="flex items-center gap-3 text-white/70 hover:text-gold transition-colors text-sm">
+                    <MapPin size={14} className="text-gold/50" />
+                    217, World Trade Center
+                  </p>
+                  <a href="tel:+94707123353" className="flex items-center gap-3 text-white/70 hover:text-gold transition-colors text-sm">
+                    <Phone size={14} className="text-gold/50" />
+                    +94 70 712 3353
+                  </a>
+                  <a href="mailto:info@theeventstime.com" className="flex items-center gap-3 text-white/70 hover:text-gold transition-colors text-sm">
+                    <Mail size={14} className="text-gold/50" />
+                    info@theeventstime.com
+                  </a>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center border border-gold/30">
-                  <Phone size={18} className="text-gold" />
+              {/* UAE */}
+              <div className="group">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center border border-gold/20">
+                    <MapPin size={14} className="text-gold" />
+                  </div>
+                  <h3 className="text-white font-serif text-xl">UAE</h3>
                 </div>
-                <div>
-                  <p className="text-white/50 text-xs">Call us</p>
-                  <p className="text-white text-sm">+94 77 123 4567</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center border border-gold/30">
-                  <MapPin size={18} className="text-gold" />
-                </div>
-                <div>
-                  <p className="text-white/50 text-xs">Location</p>
-                  <p className="text-white text-sm">Colombo • Working worldwide</p>
+                <div className="pl-11 space-y-2">
+                  <p className="flex items-center gap-3 text-white/70 hover:text-gold transition-colors text-sm">
+                    <MapPin size={14} className="text-gold/50" />
+                    Amber Tower, Downtown, Dubai
+                  </p>
+                  <a href="tel:+971582273323" className="flex items-center gap-3 text-white/70 hover:text-gold transition-colors text-sm">
+                    <Phone size={14} className="text-gold/50" />
+                    +971 58 227 3323
+                  </a>
+                  <a href="tel:+971553258530" className="flex items-center gap-3 text-white/70 hover:text-gold transition-colors text-sm">
+                    <Phone size={14} className="text-gold/50" />
+                    +971 55 325 8530
+                  </a>
                 </div>
               </div>
             </div>
@@ -123,7 +169,7 @@ const ContactSection = () => {
                 <p className="text-white/60">We&apos;ll be in touch within 48 hours.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4 relative z-20">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-medium text-white/70 mb-1.5">Your Name</label>
