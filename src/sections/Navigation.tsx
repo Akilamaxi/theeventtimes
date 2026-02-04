@@ -47,7 +47,7 @@ const Navigation = () => {
       <nav
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${isScrolled
-          ? 'bg-black/90 backdrop-blur-md border-b border-gold/10'
+          ? 'bg-black/40 backdrop-blur-2xl border-b border-white/5 shadow-2xl supports-[backdrop-filter]:bg-black/20'
           : 'bg-transparent'
           }`}
       >
