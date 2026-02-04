@@ -66,8 +66,7 @@ const GallerySection = () => {
           {galleryImages.map((img, idx) => (
             <div
               key={idx}
-              className={`gallery-animate group relative overflow-hidden rounded-xl lg:rounded-2xl border border-gold/10 cursor-pointer ${idx === 0 || idx === 3 ? 'aspect-[4/5]' : 'aspect-square'
-                }`}
+              className={`gallery-animate group relative overflow-hidden rounded-xl lg:rounded-2xl border border-gold/10 cursor-pointer aspect-[3/4]`}
               onClick={() => setLightbox(img.src)}
             >
               <img
